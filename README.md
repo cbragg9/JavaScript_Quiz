@@ -16,11 +16,13 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
--Added title page html contents  
--Added styling to buttons, titles
--Created javascript timer
+-Created event listener to prompt firstQuestion function
+-Added firstQuestion to change element displays and change textContent
   
 
 ## Previous Commits
+-Added title page html contents  
+-Added styling to buttons, titles  
+-Created javascript timer  
 -Created files html, css, js files  
 -Linked sheets and bootstrap  
