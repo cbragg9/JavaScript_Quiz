@@ -3,6 +3,7 @@ var startEl = document.getElementById("quiz-Start");
 var quizTitlesEl = document.getElementById("quiz-titles");
 var quizInstructionsEl = document.getElementById("quiz-instructions");
 var answerButtonsEl = document.getElementById("answer-button");
+var initialsEl = document.getElementById("initals-form");
 var score = 0;
 
 // Stores an HTML collection, requires a for loop to iterate through all buttons
@@ -15,25 +16,27 @@ startEl.addEventListener("click", firstQuestion);
 
 // Create text node and display initial timer as 0
 var timeCount = 0;
-var timeLeft = 60;
+var timeLeft = 75;
 var text = document.createTextNode("Time: " + timeCount);
 timerEl.appendChild(text);
 
-// Start timer countdown and display first question
+// Start timer countdown and display first question, if timer reaches 0 display all done screen
 function countdown() {
 
     var timeInterval = setInterval(function () {
-        timeCount = timeLeft;
-        text.textContent = ("Time: " + timeCount);
+        text.textContent = ("Time: " + timeLeft);
         timerEl.appendChild(text);
         timeLeft--;
 
         if (timeLeft === 0) {
+            allDone();
             clearInterval(timeInterval);
         }
 
     }, 1000);
 }
+
+var currentQuestion = 0;
 
 // Remove quiz instructions and quiz start quizButtonsEl, change title to quiz questionTwo, and display button html collection
 function firstQuestion() {
@@ -41,6 +44,7 @@ function firstQuestion() {
     startEl.style.display = "none";
     quizInstructionsEl.style.display = "none";
     quizTitlesEl.textContent = questions[currentQuestion];
+    currentQuestion++;
     quizTitlesEl.className = "text-left"
 
     // for loop to iterate over all html collection to display buttons 
@@ -65,57 +69,71 @@ var questionThreeAnswers = ["1. numbers and strings", "2. other arrays", "3. boo
 var questionFourAnswers = ["1. commas", "2. curly brackets", "3. quotes", "4. parenthesis"];
 var questionFiveAnswers = ["1. JavaScript", "2. terminal/bash", "3. for loops", "4. console.log"];
 
-var currentQuestion = 0;
+// Change title of question and add one to variable to iterate through questions array
+function changeTitles() {
+    quizTitlesEl.textContent = questions[currentQuestion];
+    currentQuestion++;
+    console.log(currentQuestion);
+}
 
+// Depending on current question, displays next question (or all done) and assigns new strings to buttons
 function nextQuestion() {
     if (event.target.matches("button")) {
 
-        if (currentQuestion === 0) {
+        if (currentQuestion === 1) {
 
-            quizTitlesEl.textContent = questions[1];
+            changeTitles();
 
             // Loop that assigns button names
             for (var i = 0; i < quizButtonsEl.length; i++) {
                 quizButtonsEl[i].textContent = questionTwoAnswers[i];
             }
 
-            currentQuestion++;
 
-        } else if (currentQuestion === 1) {
+        } else if (currentQuestion === 2) {
 
-            quizTitlesEl.textContent = questions[2];
+            changeTitles();
 
             // Loop that assigns button names
             for (var i = 0; i < quizButtonsEl.length; i++) {
                 quizButtonsEl[i].textContent = questionThreeAnswers[i];
             }
 
-            currentQuestion++;
+        } else if (currentQuestion === 3) {
 
-        } else if (currentQuestion === 2) {
-
-            quizTitlesEl.textContent = questions[3];
+            changeTitles();
 
             // Loop that assigns button names
             for (var i = 0; i < quizButtonsEl.length; i++) {
                 quizButtonsEl[i].textContent = questionFourAnswers[i];
             }
 
-            currentQuestion++;
+        } else if (currentQuestion === 4) {
 
-        } else if (currentQuestion === 3) {
-
-            quizTitlesEl.textContent = questions[4];
+            changeTitles();
 
             // Loop that assigns button names
             for (var i = 0; i < quizButtonsEl.length; i++) {
                 quizButtonsEl[i].textContent = questionFiveAnswers[i];
             }
-
-            currentQuestion++;
+        } else if (currentQuestion === 5) {
+            allDone();
         }
-
     }
+}
+
+// Displays score and form to submit initials 
+function allDone() {
+    for (var i = 0; i < quizButtonsEl.length; i++) {
+        quizButtonsEl[i].style.display = "none";
+    }
+
+    score = score + timeLeft;
+    quizTitlesEl.textContent = "All done!";
+    quizInstructionsEl.textContent = "Your final score is " + score + ".";
+    quizInstructionsEl.style.display = "block";
+    quizInstructionsEl.className = "text-left";
+    initialsEl.style.display = "block";
 }
 
 answerButtonsEl.addEventListener("click", nextQuestion);
@@ -123,4 +141,8 @@ answerButtonsEl.addEventListener("click", nextQuestion);
 
 
 
-
+// To do:
+// -Display Correct/Wrong with timer 
+// -Save initials and score to local Storage
+// -Link View Highscores button to function that displays high scores 
+// -Sort high scores by highest score

@@ -21,6 +21,14 @@
     font-weight: bold;
 }
 
-.quiz-questions {
+.quiz-questions,
+#initals-form {
     display: none;
 }
+
+input[type="submit"]{
+    background-color: #3a245a;
+    color: white;
+    border-radius: 10px;
+}
+

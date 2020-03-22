@@ -16,12 +16,13 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
+-Created changeTitles function to reduce repeated steps  
+-Created allDone function to display score/initials form when timer reaches 0 or past last question  
+
+## Previous Commits  
 -Added array of questions to ask user  
 -Added multiple array of answers to put into buttons  
 -Added event listener to display questions based off current question  
-
-
-## Previous Commits  
 -Created event listener to prompt firstQuestion function  
 -Added firstQuestion to change element displays and change textContent  
 -Added title page html contents  
