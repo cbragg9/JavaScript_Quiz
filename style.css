@@ -1,0 +1,22 @@
+.view-highscore {
+    color: #3a245a;
+    font-weight: bold;
+}
+
+#quiz-titles {
+    font-weight: bold;
+}
+
+.purple-button {
+    background-color: #3a245a;
+    color: white;
+    border-radius: 10px;
+}
+
+.purple-button:hover {
+    background-color: #7c62a5;
+}
+
+#timer {
+    font-weight: bold;
+}

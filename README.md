@@ -16,7 +16,9 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
--Added title page html contents
+-Added title page html contents  
+-Added styling to buttons, titles
+-Created javascript timer
   
 
 ## Previous Commits

@@ -6,7 +6,6 @@
     <title>JavaScript Quiz</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 
 </head>
 <body>
@@ -14,11 +13,11 @@
     <div class="container-fluid">
 
         <div class="row justify-content-between">
-            <div class="col-6 col-md-4 col-lg-2">
-                <button>View Highscores</button>
+            <div class="col-6 col-md-4 col-lg-3">
+                <button type="button" class="btn btn-link view-highscore">View Highscores</button>
             </div>
-            <div class="col-6 col-md-4 col-lg-2 text-right">
-                <p>Timer</p>
+            <div class="col-6 col-md-4 col-lg-3 text-right">
+                <p id="timer"></p>
             </div>
         </div>
 
@@ -29,13 +28,13 @@
     <div class="container-fluid">
 
         <div class="row header">
-            <div class="col-12 text-center">
-                <h3>Coding Quiz Challenge</h3>
+            <div class="col-12 text-center title">
+                <h2 id="quiz-titles">Coding Quiz Challenge</h2>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3">
+            <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3 middle-content">
                 <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                     answers will penalize your score/time by ten seconds!
                 </p>
@@ -43,13 +42,13 @@
         </div>
 
         <div class="row">
-            <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3">
-                <button id="quiz-Start">Start Quiz</button>
+            <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3 lower-content">
+                <button id="quiz-Start" class="purple-button">Start Quiz</button>
             </div>
         </div>
 
     </div>
 
-    
+    <script src="script.js"></script>
 </body>
 </html>
