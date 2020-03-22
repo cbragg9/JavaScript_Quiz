@@ -16,5 +16,9 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
+-Added title page html contents
+  
+
+## Previous Commits
 -Created files html, css, js files  
--Linked sheets and bootstrap
+-Linked sheets and bootstrap  
