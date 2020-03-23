@@ -1,4 +1,4 @@
-.view-highscore {
+#view-highscore {
     color: #3a245a;
     font-weight: bold;
 }
@@ -22,7 +22,9 @@
 }
 
 .quiz-questions,
-#initals-form {
+#initals-form,
+#popupCorrect,
+#popupWrong {
     display: none;
 }
 
@@ -32,3 +34,13 @@ input[type="submit"]{
     border-radius: 10px;
 }
 
+hr {
+    width: 100%;
+    border: 1px solid lightgray;
+    margin-bottom: 2px;
+}
+
+.popup {
+    color: gray;
+    font-style: italic;
+}
