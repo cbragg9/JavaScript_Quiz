@@ -16,6 +16,14 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
+-Added comments for clarity  
+-Added html for highscores page buttons  
+-Added localstorage for score and initials  
+-Modified functions to create and display highscores  
+-Added Event Handler to reload page when pressing Go Back
+
+
+## Previous Commits  
 -Created html/css for "Correct!" and "Wrong!" pop ups  
 -Stopped timer when last question is answered  
 -Replaced first question answers from html to javascript array  
@@ -27,9 +35,6 @@ THEN I can save my initials and score
 -Created function for displaying highscores  
 -Added function to display highscore if html form is submitted (and prevent form default refresh)  
 -Added event listener for view highscores button to call highscores function  
-
-
-## Previous Commits  
 -Created changeTitles function to reduce repeated steps  
 -Created allDone function to display score/initials form when timer reaches 0 or past last question  
 -Added array of questions to ask user  

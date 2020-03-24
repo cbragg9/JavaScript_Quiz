@@ -5,7 +5,7 @@ var quizInstructionsEl = document.getElementById("quiz-instructions");
 var answerButtonsEl = document.getElementById("answer-button");
 var initialsEl = document.getElementById("initals-form");
 var viewHighscore = document.getElementById("view-highscore");
-var newButtonsRow = document.getElementById("new-buttons-row");
+var newMainContentRow = document.getElementById("main-content-row");
 var score = 0;
 
 // Stores an HTML collection, requires a for loop to iterate through all buttons
@@ -50,7 +50,7 @@ function firstQuestion() {
     quizInstructionsEl.style.display = "none";
     quizTitlesEl.textContent = questions[currentQuestion];
     currentQuestion++;
-    quizTitlesEl.className = "text-left"
+    quizTitlesEl.className = "text-left";
 
     // for loop to iterate over all html collection to display buttons 
     for (var i = 0; i < quizButtonsEl.length; i++) {
@@ -235,21 +235,31 @@ function allDone() {
     quizInstructionsEl.style.display = "block";
     quizInstructionsEl.className = "text-left";
     initialsEl.style.display = "block";
+
+    localStorage.setItem("userScore", score);
 }
 
-// Event handler for clicks on answer buttons
+// Event handler for clicks on quiz answer buttons
 answerButtonsEl.addEventListener("click", nextQuestion);
 
 
-// Event handler for initials form submit
+// Event handler to save initials on form submit
 initialsEl.addEventListener("submit", function(event) {
     event.preventDefault();
+
+    // Set local storage on form value saved on submit (submittedInitials = id of text box html)
+    localStorage.setItem("userInitials", initialsEl.submittedInitials.value);
+
+    createHighscore();
     highScores();
 });
 
-// Display high scores, hide all other elements
+// Display high score entries, hide all other elements
 function highScores() {
+    document.getElementById("top-row").style.display = "none";
+    document.getElementById("highscores-buttons").style.display = "block";
     quizTitlesEl.textContent = "Highscores";
+    quizTitlesEl.className = "col-10 col-sm-8 col-md-6 offset-1 offset-sm-2 offset-md-3";
     quizInstructionsEl.style.display = "none";
     initialsEl.style.display = "none";
     startEl.style.display = "none";
@@ -258,27 +268,32 @@ function highScores() {
         quizButtonsEl[i].style.display = "none";
         quizButtonsEl[i].textContent = questionOneAnswers[i];
     }
+
+    var savedEntry = localStorage.getItem("saveEntry");
+    newMainContentRow.append(savedEntry);
+    newMainContentRow.className = "col-10 col-sm-8 col-md-6 text-left offset-1 offset-sm-2 offset-md-3";
+    newMainContentRow.style.backgroundColor = "#efe7f7";
+    newMainContentRow.style.paddingLeft = "5px";
 }
 
+
+// Create a high score entry but do not display
+function createHighscore() {
+    
+    var scoreEntry = document.createElement("div");
+    scoreEntry.className = "col-10 col-sm-8 col-md-6 text-left offset-1 offset-sm-2 offset-md-3";
+    scoreEntry.innerHTML = localStorage.getItem('userInitials') + " - " + localStorage.getItem('userScore');
+    scoreEntry.style.backgroundColor = "#efe7f9";
+    scoreEntry.style.fontWeight = "bold";
+    localStorage.setItem("saveEntry", scoreEntry.innerHTML);
+}
+
+// Display high scores when clicked
 viewHighscore.addEventListener("click", highScores);
 
+// Refresh page when pressing go back
+document.getElementById("goBack-Button").addEventListener("click", restart);
 
-// To do:
-// -Save initials and score to local Storage
-// -Sort high scores by highest score
-// Add Go Back and Clear Highscores button
-
-
-
-
-
-// Create buttons
-// var goBack = document.createElement("button");
-// goBack.className = "purple-button";
-// goBack.innerHTML = "Go Back";
-// newButtonsRow.append(goBack);
-
-// var clearScores = document.createElement("button");
-// goBack.className = "purple-button";
-// goBack.innerHTML = "Clear Highscores";
-// newButtonsRow.append(clearScores);
+function restart() {
+    location.reload();
+}

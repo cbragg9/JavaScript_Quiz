@@ -10,7 +10,8 @@
 </head>
 <body>
 
-    <div class="container-fluid">
+    <!-- Top row div for view highscores link and timer display -->
+    <div class="container-fluid" id="top-row">
 
         <div class="row justify-content-between">
             <div class="col-6 col-md-4 col-lg-3">
@@ -25,6 +26,7 @@
 
     <br>
 
+    <!-- Quiz main content -->
     <div class="container-fluid">
 
         <div class="row header">
@@ -33,19 +35,20 @@
             </div>
         </div>
 
-        <div class="row" id= "new-buttons-row">
+        <div class="row" id= "main-content-row">
             <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3">
                 <p id="quiz-instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
                     answers will penalize your score/time by ten seconds!
                 </p>
 
+                <!-- CSS "display: none" on launch -->
                 <form id="initals-form" class="text-left">
                     <label for="initials">Enter initials: </label>
-                    <input type="text" id="score-form">
+                    <input type="text" id="submittedInitials">
                     <input type="submit" value="Submit" id="submit-form">
                 </form>
 
-                <!-- Buttons not displayed on home screen -->
+                <!-- CSS "display: none" on launch -->
                 <div id = "answer-button">
                     <button id="first-answer" class="purple-button quiz-questions"></button>
                     <button id="second-answer" class="purple-button quiz-questions"></button>
@@ -55,6 +58,7 @@
             </div>
         </div>
 
+        <!-- CSS "display: none" on launch -->
         <div class= "col-10 col-sm-8 col-md-6 offset-1 offset-sm-2 offset-md-3" id="popupCorrect">
             <hr>
             <p class="popup">Correct!</p>
@@ -64,8 +68,15 @@
             <p class="popup">Wrong!</p>
         </div>
 
-
+        <!-- CSS "display: none" on launch -->
         <div class="row">
+            <div class = "col-10 col-sm-8 col-md-6 offset-1 offset-sm-2 offset-md-3" id="highscores-buttons">
+                <button id="goBack-Button" class="purple-button">Go Back</button>
+                <button id="clearScores-Button" class="purple-button">Clear Highscores</button>
+            </div>
+        </div>
+
+        <div class="row" id="bottom-row">
             <div class="col-10 col-sm-8 col-md-6 text-center offset-1 offset-sm-2 offset-md-3 lower-content">
                 <button id="quiz-Start" class="purple-button">Start Quiz</button>
             </div>

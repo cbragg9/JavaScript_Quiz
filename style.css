@@ -24,7 +24,8 @@
 .quiz-questions,
 #initals-form,
 #popupCorrect,
-#popupWrong {
+#popupWrong,
+#highscores-buttons {
     display: none;
 }
 
@@ -43,4 +44,9 @@ hr {
 .popup {
     color: gray;
     font-style: italic;
+}
+
+#highscores-buttons {
+    margin-top: 20px;
+    padding-left: 5px;
 }
