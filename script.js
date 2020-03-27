@@ -244,6 +244,8 @@ function allDone() {
 answerButtonsEl.addEventListener("click", nextQuestion);
 
 var highscoresArray = [];
+
+// On page start, grab any previously stored highscores and put them into empty highscores array 
 init();
 
 // Get stored highscores from local storage by parsing the JSON string to an object
@@ -268,10 +270,12 @@ initialsEl.addEventListener("submit", function(event) {
     renderHighscores();
 });
 
+// After form submit, store highscores array in local storage using JSON stringify
 function storeHighscores() {
     localStorage.setItem("highscoresLocal", JSON.stringify(highscoresArray));
 }
 
+// Display highscores by changing element displays, removing buttons display with for loop, and adding elements for length of high scores array
 function renderHighscores() {
     document.getElementById("top-row").style.display = "none";
     document.getElementById("highscores-buttons").style.display = "block";
@@ -303,18 +307,16 @@ function renderHighscores() {
 viewHighscore.addEventListener("click", renderHighscores);
 
 // Refresh page when pressing go back
-document.getElementById("goBack-Button").addEventListener("click", restart);
-
-function restart() {
-    location.reload();
-}
+document.getElementById("goBack-Button").addEventListener("click", function() {
+    location.reload();    
+});
 
 // Delete local storage when pressing Clear Highscores
-clearScoresButtonEl.addEventListener("click", clearHighscores);
-
-function clearHighscores() {
+clearScoresButtonEl.addEventListener("click", function() {
     localStorage.clear();
     newMainContentRow.style.display = "none";
-}
+});
+
+
 
 

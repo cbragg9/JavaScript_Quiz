@@ -16,12 +16,14 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
--Added function to clear local storage and hide created highscore display elements  
--Added function to refresh browser  
--Modified highscore page rendering and local storage entries  
+-Added additional comments to functions for clarity  
+-Modified event handlers to include function instead of separated out  
 
 
 ## Previous Commits  
+-Added function to clear local storage and hide created highscore display elements  
+-Added function to refresh browser  
+-Modified highscore page rendering and local storage entries  
 -Added comments for clarity  
 -Added html for highscores page buttons  
 -Added localstorage for score and initials  
