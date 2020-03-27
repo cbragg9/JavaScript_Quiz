@@ -16,14 +16,17 @@ THEN I can save my initials and score
 ```  
 
 ## Latest Commit  
+-Added function to clear local storage and hide created highscore display elements  
+-Added function to refresh browser  
+-Modified highscore page rendering and local storage entries  
+
+
+## Previous Commits  
 -Added comments for clarity  
 -Added html for highscores page buttons  
 -Added localstorage for score and initials  
 -Modified functions to create and display highscores  
--Added Event Handler to reload page when pressing Go Back
-
-
-## Previous Commits  
+-Added Event Handler to reload page when pressing Go Back  
 -Created html/css for "Correct!" and "Wrong!" pop ups  
 -Stopped timer when last question is answered  
 -Replaced first question answers from html to javascript array  

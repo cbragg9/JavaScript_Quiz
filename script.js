@@ -6,7 +6,9 @@ var answerButtonsEl = document.getElementById("answer-button");
 var initialsEl = document.getElementById("initals-form");
 var viewHighscore = document.getElementById("view-highscore");
 var newMainContentRow = document.getElementById("main-content-row");
+var clearScoresButtonEl = document.getElementById("clearScores-Button");
 var score = 0;
+
 
 // Stores an HTML collection, requires a for loop to iterate through all buttons
 var quizButtonsEl = document.getElementsByClassName("quiz-questions");
@@ -236,26 +238,41 @@ function allDone() {
     quizInstructionsEl.className = "text-left";
     initialsEl.style.display = "block";
 
-    localStorage.setItem("userScore", score);
 }
 
 // Event handler for clicks on quiz answer buttons
 answerButtonsEl.addEventListener("click", nextQuestion);
 
+var highscoresArray = [];
+init();
 
-// Event handler to save initials on form submit
+// Get stored highscores from local storage by parsing the JSON string to an object
+function init() {
+    var storedHighscores = JSON.parse(localStorage.getItem("highscoresLocal"));
+
+    if (storedHighscores !== null) {
+        highscoresArray = storedHighscores;
+    }
+}
+
+// When form is submitted, add new highscore text to highscore Array, 
 initialsEl.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    // Set local storage on form value saved on submit (submittedInitials = id of text box html)
-    localStorage.setItem("userInitials", initialsEl.submittedInitials.value);
+    var submitText = (highscoresArray.length + 1) + ". " + submittedInitials.value.trim() + " - " + score;
+    
+    highscoresArray.push(submitText);
 
-    createHighscore();
-    highScores();
+    // Store to array, render highscores
+    storeHighscores();
+    renderHighscores();
 });
 
-// Display high score entries, hide all other elements
-function highScores() {
+function storeHighscores() {
+    localStorage.setItem("highscoresLocal", JSON.stringify(highscoresArray));
+}
+
+function renderHighscores() {
     document.getElementById("top-row").style.display = "none";
     document.getElementById("highscores-buttons").style.display = "block";
     quizTitlesEl.textContent = "Highscores";
@@ -269,27 +286,21 @@ function highScores() {
         quizButtonsEl[i].textContent = questionOneAnswers[i];
     }
 
-    var savedEntry = localStorage.getItem("saveEntry");
-    newMainContentRow.append(savedEntry);
-    newMainContentRow.className = "col-10 col-sm-8 col-md-6 text-left offset-1 offset-sm-2 offset-md-3";
-    newMainContentRow.style.backgroundColor = "#efe7f7";
-    newMainContentRow.style.paddingLeft = "5px";
-}
+    // For length of highscore array, create DIV and display the entry
+    for (var j = 0; j < highscoresArray.length; j++) {
+        var displayScore = highscoresArray[j];
+        var scoreEntryEl = document.createElement("div");
+        scoreEntryEl.className = "col-10 col-sm-8 col-md-6 text-left offset-1 offset-sm-2 offset-md-3";
+        scoreEntryEl.style.backgroundColor = "#efe7f9";
+        scoreEntryEl.style.fontWeight = "bold";
+        scoreEntryEl.textContent = displayScore;
+        newMainContentRow.appendChild(scoreEntryEl);
+    }
 
-
-// Create a high score entry but do not display
-function createHighscore() {
-    
-    var scoreEntry = document.createElement("div");
-    scoreEntry.className = "col-10 col-sm-8 col-md-6 text-left offset-1 offset-sm-2 offset-md-3";
-    scoreEntry.innerHTML = localStorage.getItem('userInitials') + " - " + localStorage.getItem('userScore');
-    scoreEntry.style.backgroundColor = "#efe7f9";
-    scoreEntry.style.fontWeight = "bold";
-    localStorage.setItem("saveEntry", scoreEntry.innerHTML);
 }
 
 // Display high scores when clicked
-viewHighscore.addEventListener("click", highScores);
+viewHighscore.addEventListener("click", renderHighscores);
 
 // Refresh page when pressing go back
 document.getElementById("goBack-Button").addEventListener("click", restart);
@@ -297,3 +308,13 @@ document.getElementById("goBack-Button").addEventListener("click", restart);
 function restart() {
     location.reload();
 }
+
+// Delete local storage when pressing Clear Highscores
+clearScoresButtonEl.addEventListener("click", clearHighscores);
+
+function clearHighscores() {
+    localStorage.clear();
+    newMainContentRow.style.display = "none";
+}
+
+
