@@ -1,26 +1,24 @@
 # JavaScript_Quiz  
 Take a quiz on JavaScript fundamentals. 
 
-```  
-GIVEN I am taking a code quiz  
-WHEN I click the start button  
-THEN a timer starts and I am presented with a question  
-WHEN I answer a question  
-THEN I am presented with another question  
-WHEN I answer a question incorrectly  
-THEN time is subtracted from the clock  
-WHEN all questions are answered or the timer reaches 0  
-THEN the game is over  
-WHEN the game is over  
-THEN I can save my initials and score  
-```  
+Starting the quiz will begin a timer for 75 seconds.  
+The HTML will change to display a question and 4 answer buttons.  
+Depending on the answer, either a correct or wrong prompt will appear.  
+If you choose an incorrect answer, 10 seconds will be taken off the timer.  
+After all 5 questions, the user will be given a final score based on the time left.  
+User will enter initials on a form and submit, both the score and initials will be saved in Local Storage.  
+When submitted, the highscores will be parsed and the highscores page will render.  
+Pressing Clear Highscores will clear the local storage and re-render the highscores.  
+Pressing Go Back will refresh the page to start at the home page.  
+A view highscores button will render the saved highscores.  
 
 ## Latest Commit  
--Added additional comments to functions for clarity  
--Modified event handlers to include function instead of separated out  
+-Updated readme to describe project in my own words.  
 
 
 ## Previous Commits  
+-Added additional comments to functions for clarity  
+-Modified event handlers to include function instead of separated out  
 -Added function to clear local storage and hide created highscore display elements  
 -Added function to refresh browser  
 -Modified highscore page rendering and local storage entries  
